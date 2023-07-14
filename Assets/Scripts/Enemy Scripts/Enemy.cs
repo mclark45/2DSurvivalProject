@@ -9,12 +9,13 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Init()
     {
+        // Sets the enemies target to the player.
         SetTarget();
     }
 
     private void Start()
     {
-        // Sets the enemies target to the player.
+        // Calls the Init function.
         Init();
     }
 
