@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
             if (_reloading == false)
             {
                 _reloading = true;
+                Debug.Log("Reloading....");
                 StartCoroutine(Reload());
             }
         }
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
         _ammoCount = 10;
         _canFire = true;
         _reloading = false;
+        Debug.Log("Ready to fire......");
         StopCoroutine(Reload());
     }
 }

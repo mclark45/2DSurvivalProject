@@ -25,9 +25,19 @@ public class PoolManager : MonoBehaviour
 
     private void Start()
     {
+        _enemyPool = GenerateEnemies(_enemies);
         _bulletPool = GenerateBullets(_bullets);
     }
 
+    // Enemy Pool Info
+    [Header("Enemy Settings")]
+    [SerializeField] private GameObject _basicEnemyPrefab;
+    [SerializeField] private GameObject _enemyContainer;
+    [SerializeField] private List<GameObject> _enemyPool;
+    [SerializeField] private int _enemies;
+
+    // Bullet Pool Info
+    [Header("Bullet Settings")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletContainer;
     [SerializeField] private List<GameObject> _bulletPool;
@@ -43,6 +53,20 @@ public class PoolManager : MonoBehaviour
             _bulletPool.Add(bullet);
         }
         return _bulletPool;
+    }
+
+    private List<GameObject> GenerateEnemies(int numOfEnemies)
+    {
+
+        for (int i = 0; i < numOfEnemies; i++)
+        {
+            GameObject enemy = Instantiate(_basicEnemyPrefab);
+            enemy.transform.parent = _enemyContainer.transform;
+            enemy.SetActive(false);
+            _enemyPool.Add(enemy);
+        }
+
+        return _enemyPool;
     }
 
     public GameObject RequestBullet()

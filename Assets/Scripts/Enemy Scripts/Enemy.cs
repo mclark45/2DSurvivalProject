@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
     protected GameObject _player;
     [SerializeField] protected float _speed = 1.0f;
+    [SerializeField] protected int _health = 3;
 
     public virtual void Init()
     {

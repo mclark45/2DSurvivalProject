@@ -16,6 +16,19 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.up * Time.deltaTime * _speed);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit: " + other.name);
+
+        IDamagable hit = other.GetComponent<IDamagable>();
+
+        if (hit != null)
+        {
+            hit.Damage();
+            Hide();
+        }
+    }
+
     private void Hide()
     {
         this.gameObject.SetActive(false);
