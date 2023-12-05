@@ -5,6 +5,9 @@ using UnityEngine;
 public class BasicEnemy : Enemy, IDamagable
 {
     public int Health { get; set; }
+    public float Timer { get; set; }
+
+    public float damageDelay = 0;
 
     public override void Init()
     {
@@ -16,6 +19,7 @@ public class BasicEnemy : Enemy, IDamagable
     {
         Health--;
         Debug.Log("Health: " + Health);
+
 
         if (Health < 1)
             gameObject.SetActive(false);

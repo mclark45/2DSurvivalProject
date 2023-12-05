@@ -25,26 +25,21 @@ public class PoolManager : MonoBehaviour
 
     private void Start()
     {
-        _enemyPool = GenerateEnemies(_enemies);
+        // Generates initial pool of bullets.
         _bulletPool = GenerateBullets(_bullets);
     }
-
-    // Enemy Pool Info
-    [Header("Enemy Settings")]
-    [SerializeField] private GameObject _basicEnemyPrefab;
-    [SerializeField] private GameObject _enemyContainer;
-    [SerializeField] private List<GameObject> _enemyPool;
-    [SerializeField] private int _enemies;
 
     // Bullet Pool Info
     [Header("Bullet Settings")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletContainer;
-    [SerializeField] private List<GameObject> _bulletPool;
     [SerializeField] private int _bullets;
+    [SerializeField] private List<GameObject> _bulletPool;
+
 
     private List<GameObject> GenerateBullets(int numOfBullets)
     {
+        // Creates bullets based on bullet count and adds them to the bullet pool.
         for (int i = 0; i < numOfBullets; i++)
         {
             GameObject bullet = Instantiate(_bulletPrefab);
@@ -55,22 +50,9 @@ public class PoolManager : MonoBehaviour
         return _bulletPool;
     }
 
-    private List<GameObject> GenerateEnemies(int numOfEnemies)
-    {
-
-        for (int i = 0; i < numOfEnemies; i++)
-        {
-            GameObject enemy = Instantiate(_basicEnemyPrefab);
-            enemy.transform.parent = _enemyContainer.transform;
-            enemy.SetActive(false);
-            _enemyPool.Add(enemy);
-        }
-
-        return _enemyPool;
-    }
-
     public GameObject RequestBullet()
     {
+        // Looks for inactive bullet in bullet pool and returns it.
         foreach(var bullet in _bulletPool)
         {
             if(bullet.activeInHierarchy == false)
@@ -80,6 +62,7 @@ public class PoolManager : MonoBehaviour
             }
         }
 
+        // If no inactive bullet was found create new bullet, add it to the bullet pool, and return the new bullet.
         GameObject newBullet = Instantiate(_bulletPrefab);
         newBullet.transform.parent = _bulletContainer.transform;
         _bulletPool.Add(newBullet);

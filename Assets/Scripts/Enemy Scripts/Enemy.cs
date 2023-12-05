@@ -26,16 +26,22 @@ public abstract class Enemy : MonoBehaviour
         Chase();
     }
 
+    /**
+     * gets the GameObject with the tag player
+     * and sets it to the _player GameObject variable
+     **/ 
     protected virtual void SetTarget()
     {
-        // Set the player gameobject if the player is found or give error that player is not found.
-        if (GameObject.FindWithTag("Player") != null)
-            _player = GameObject.FindWithTag("Player");
+        // Set the player gameobject and gives an error if player is null.
+        _player = GameObject.FindWithTag("Player");
 
-        else
-            Debug.LogError("Player was not found!!!");
+        if (_player == null)
+            Debug.LogError("Player is Null.....");
     }
 
+    /**
+     * Sets the enemy to face the player and then move toward them
+     **/ 
     protected virtual void Chase()
     {
        // Sets the enemies forward position to face the player.

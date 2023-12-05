@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * _speed);
+       transform.Translate(Vector3.up * Time.deltaTime * _speed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
